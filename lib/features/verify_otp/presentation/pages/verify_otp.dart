@@ -7,6 +7,7 @@ import 'package:movie_streaming_app/shared_widgets/custom_status_bar.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../../../shared_widgets/auth_app_bar_widget.dart';
+import '../../../personalization/presentation/pages/personalization.dart';
 import '../widgets/verify_otp_elevated_button.dart';
 
 class VerifyOtp extends StatefulWidget {
@@ -158,7 +159,7 @@ class _VerifyOtpState extends State<VerifyOtp> {
                       FocusScope.of(context).unfocus();
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
+                        MaterialPageRoute(builder: (context) => GenreSelectionScreen()),
                       );
                     },
                   ),
