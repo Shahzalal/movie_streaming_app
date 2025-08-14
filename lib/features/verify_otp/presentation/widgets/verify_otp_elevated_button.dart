@@ -3,11 +3,11 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
 import '../../../../core/utils/ui_helper.dart';
 
-class RegisterElevatedButtonWidget extends StatelessWidget {
+class VerifyOtpElevatedButton extends StatelessWidget {
   final bool isEmailFilled;
   final VoidCallback onTap;
 
-  const RegisterElevatedButtonWidget({
+  const VerifyOtpElevatedButton({
     super.key,
     required this.isEmailFilled,
     required this.onTap,
@@ -22,9 +22,9 @@ class RegisterElevatedButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: isEmailFilled
             ? () {
-                FocusScope.of(context).unfocus(); // Keyboard hide
-                onTap(); // Navigate
-              }
+          FocusScope.of(context).unfocus(); // Keyboard hide
+          onTap(); // Navigate
+        }
             : null,
         style: ElevatedButton.styleFrom(
           backgroundColor: isEmailFilled

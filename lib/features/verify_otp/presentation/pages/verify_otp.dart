@@ -2,49 +2,48 @@ import 'package:flutter/material.dart';
 import 'package:movie_streaming_app/core/utils/size_config.dart';
 import 'package:movie_streaming_app/core/utils/ui_helper.dart';
 import 'package:movie_streaming_app/core/theme/app_colors.dart';
+import 'package:movie_streaming_app/features/home/presentation/pages/home_page.dart';
 import 'package:movie_streaming_app/shared_widgets/custom_status_bar.dart';
+import 'package:pinput/pinput.dart';
 
 import '../../../../shared_widgets/auth_app_bar_widget.dart';
-import '../../../../shared_widgets/auth_with_apple_widget.dart';
-import '../../../../shared_widgets/auth_with_google_widget.dart';
-import '../../../../shared_widgets/password_text_field_widget.dart';
-import '../../../verify_otp/presentation/pages/verify_otp.dart';
-import '../widgets/date_text_field_widget.dart';
-import '../widgets/register_elevated_button_widget.dart';
-import '../widgets/register_email_text_field_widget.dart';
+import '../widgets/verify_otp_elevated_button.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class VerifyOtp extends StatefulWidget {
+  const VerifyOtp({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<VerifyOtp> createState() => _VerifyOtpState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
-  final FocusNode _emailFocusNode = FocusNode();
-  final TextEditingController _emailController = TextEditingController();
-  bool _isEmailFilled = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _emailController.addListener(() {
-      setState(() {
-        _isEmailFilled = _emailController.text.trim().isNotEmpty;
-      });
-    });
-  }
+class _VerifyOtpState extends State<VerifyOtp> {
+  final TextEditingController _otpController = TextEditingController();
+  bool _isOtpFilled = false;
 
   @override
   void dispose() {
-    _emailFocusNode.dispose();
-    _emailController.dispose();
+    _otpController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
+
+    final defaultPinTheme = PinTheme(
+      width: SizeConfig.ws(56),
+      height: SizeConfig.hs(56),
+      margin: EdgeInsets.symmetric(horizontal: SizeConfig.ws(4)),
+      textStyle: TextStyle(
+        fontSize: SizeConfig.ws(20),
+        color: Colors.white,
+        fontWeight: FontWeight.w600,
+      ),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(SizeConfig.ws(8)),
+      ),
+    );
 
     return CustomStatusBar(
       child: Scaffold(
@@ -56,71 +55,45 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Top bar
-                  AuthAppBarWidget(appTitle: 'Register'),
-                  SizedBox(height: SizeConfig.hs(30)),
-
-                  UiHelper.customText(
-                    text: "Create New Account",
-                    color: AppColors.mainTextColor,
-                    fontweight: FontWeight.bold,
-                    fontfamily: "bold",
-                    fontsize: SizeConfig.ws(20),
-                  ),
-                  SizedBox(height: SizeConfig.hs(25)),
-
-                  // Email field
-                  RegisterEmailTextFieldWidget(
-                    emailController: _emailController,
-                    emailFocusNode: _emailFocusNode,
-                  ),
-                  SizedBox(height: SizeConfig.hs(20)),
-
-                  // Password
-                  PasswordTextFieldWidget(hintText: "Password"),
-                  SizedBox(height: SizeConfig.hs(20)),
-
-                  // Confirm Password
-                  PasswordTextFieldWidget(hintText: 'Confirm Password'),
-                  SizedBox(height: SizeConfig.hs(20)),
-
-                  // Date
-                  DateTextFieldWidget(hintText: 'DD/MM/YYYY'),
-                  SizedBox(height: SizeConfig.hs(15)),
-
-                  // Register Button
-                  RegisterElevatedButtonWidget(
-                    isEmailFilled: _isEmailFilled,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const VerifyOtp(),
-                        ),
-                      );
-                    },
-                  ),
-
-                  SizedBox(height: SizeConfig.hs(20)),
+                  AuthAppBarWidget(appTitle: 'OTP Verification'),
+                  SizedBox(height: SizeConfig.hs(50)),
 
                   Center(
                     child: UiHelper.customText(
-                      text: "or",
+                      text: "Code is sent to +1 412 **** ***31",
                       color: AppColors.versionTextColor,
                       fontsize: SizeConfig.ws(14),
                     ),
                   ),
-                  SizedBox(height: SizeConfig.hs(20)),
 
-                  // Apple Login
-                  AuthWithAppleWidget(title: 'Register With Apple'),
-                  SizedBox(height: SizeConfig.hs(15)),
+                  SizedBox(height: SizeConfig.hs(30)),
 
-                  // Google Login
-                  AuthWithGoogleWidget(title: 'Register With Google'),
-                  SizedBox(height: SizeConfig.hs(80)),
+                  Center(
+                    child: Pinput(
+                      length: 4,
+                      controller: _otpController,
+                      defaultPinTheme: defaultPinTheme,
+                      focusedPinTheme: defaultPinTheme.copyWith(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blue),
+                          borderRadius: BorderRadius.circular(SizeConfig.ws(8)),
+                        ),
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          _isOtpFilled = value.length == 4;
+                        });
+                      },
+                      onCompleted: (pin) {
+                        setState(() {
+                          _isOtpFilled = true;
+                        });
+                      },
+                    ),
+                  ),
 
-                  // Privacy Policy & Terms
+                  SizedBox(height: SizeConfig.hs(30)),
+
                   Center(
                     child: Column(
                       children: [
@@ -145,7 +118,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                 "Privacy Policy",
                                 style: TextStyle(
                                   color: AppColors.primaryBlue,
-                                  fontWeight: FontWeight.bold,
                                   fontSize: SizeConfig.ws(14),
                                 ),
                               ),
@@ -168,7 +140,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                 " Terms of Use",
                                 style: TextStyle(
                                   color: AppColors.primaryBlue,
-                                  fontWeight: FontWeight.bold,
                                   fontSize: SizeConfig.ws(14),
                                 ),
                               ),
@@ -177,6 +148,19 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ],
                     ),
+                  ),
+
+                  SizedBox(height: SizeConfig.hs(50)),
+
+                  VerifyOtpElevatedButton(
+                    isEmailFilled: _isOtpFilled,
+                    onTap: () {
+                      FocusScope.of(context).unfocus();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage()),
+                      );
+                    },
                   ),
                   SizedBox(height: SizeConfig.hs(20)),
                 ],
