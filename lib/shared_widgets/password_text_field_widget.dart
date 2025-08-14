@@ -4,9 +4,9 @@ import '../core/theme/app_colors.dart';
 
 class PasswordTextFieldWidget extends StatelessWidget {
   const PasswordTextFieldWidget({
-    super.key,
+    super.key, required this.hintText,
   });
-
+      final String hintText;
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -17,7 +17,7 @@ class PasswordTextFieldWidget extends StatelessWidget {
           Icons.lock,
           color: AppColors.mainTextColor,
         ),
-        hintText: "Password",
+        hintText: hintText,
         hintStyle: const TextStyle(
           color: AppColors.versionTextColor,
         ),

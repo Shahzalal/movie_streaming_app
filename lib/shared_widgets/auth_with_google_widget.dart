@@ -6,8 +6,10 @@ import '../core/utils/size_config.dart';
 
 class AuthWithGoogleWidget extends StatelessWidget {
   const AuthWithGoogleWidget({
-    super.key,
+    super.key, required this.title,
   });
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class AuthWithGoogleWidget extends StatelessWidget {
       child: OutlinedButton.icon(
         icon: Image.asset(AssetPath.googleImage, height: SizeConfig.hs(20)),
         label: Text(
-          "Login with Google",
+          title,
           style: TextStyle(
             color: AppColors.mainTextColor,
             fontSize: SizeConfig.ws(16),

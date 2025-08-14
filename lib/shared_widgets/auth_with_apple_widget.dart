@@ -5,8 +5,10 @@ import '../core/utils/size_config.dart';
 
 class AuthWithAppleWidget extends StatelessWidget {
   const AuthWithAppleWidget({
-    super.key,
+    super.key, required this.title,
   });
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class AuthWithAppleWidget extends StatelessWidget {
       child: OutlinedButton.icon(
         icon: const Icon(Icons.apple, color: Colors.black),
         label: Text(
-          "Login with Apple",
+          title,
           style: TextStyle(color: Colors.black, fontSize: SizeConfig.ws(16)),
         ),
         style: OutlinedButton.styleFrom(

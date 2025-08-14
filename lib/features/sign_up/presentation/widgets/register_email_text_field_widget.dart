@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 
-class LoginEmailTextFieldWidget extends StatelessWidget {
-  const LoginEmailTextFieldWidget({
+class RegisterEmailTextFieldWidget extends StatelessWidget {
+  const RegisterEmailTextFieldWidget({
     super.key,
     required this.emailController,
     required this.emailFocusNode,
@@ -18,25 +18,16 @@ class LoginEmailTextFieldWidget extends StatelessWidget {
       focusNode: emailFocusNode,
       style: const TextStyle(color: AppColors.mainTextColor),
       decoration: InputDecoration(
-        prefixIcon: const Icon(
-          Icons.email,
-          color: AppColors.mainTextColor,
-        ),
+        prefixIcon: const Icon(Icons.email, color: AppColors.mainTextColor),
 
         hintText: "Email",
-        hintStyle: const TextStyle(
-          color: AppColors.versionTextColor,
-        ),
+        hintStyle: const TextStyle(color: AppColors.versionTextColor),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: AppColors.versionTextColor,
-          ),
+          borderSide: const BorderSide(color: AppColors.versionTextColor),
           borderRadius: BorderRadius.circular(6),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: AppColors.primaryBlue,
-          ),
+          borderSide: const BorderSide(color: AppColors.primaryBlue),
           borderRadius: BorderRadius.circular(6),
         ),
       ),

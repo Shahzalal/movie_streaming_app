@@ -4,10 +4,10 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
 import '../../../../core/utils/ui_helper.dart';
 
-class LoginElevatedButtonWidget extends StatelessWidget {
+class RegisterElevatedButtonWidget extends StatelessWidget {
   final bool isEmailFilled;
 
-  const LoginElevatedButtonWidget({
+  const RegisterElevatedButtonWidget({
     super.key,
     required this.isEmailFilled,
   });
@@ -31,7 +31,7 @@ class LoginElevatedButtonWidget extends StatelessWidget {
           ),
         ),
         child: UiHelper.customText(
-          text: "Login",
+          text: "Create Account",
           color: Colors.white,
           fontsize: SizeConfig.ws(16),
         ),
