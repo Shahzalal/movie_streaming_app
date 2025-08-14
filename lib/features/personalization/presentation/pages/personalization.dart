@@ -3,6 +3,7 @@ import 'package:movie_streaming_app/core/utils/asset_path.dart';
 import 'package:movie_streaming_app/core/utils/size_config.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/ui_helper.dart';
+import '../../../bottom_navigation_bar/presentation/pages/bottom_navigation_bar.dart';
 
 class GenreSelectionScreen extends StatefulWidget {
   const GenreSelectionScreen({super.key});
@@ -193,7 +194,9 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: selectedGenres.isEmpty ? null : () {},
+                  onPressed: selectedGenres.isEmpty ? null : () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeBottomNavScreen()));
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: selectedGenres.isEmpty
                         ? Colors.grey[800]

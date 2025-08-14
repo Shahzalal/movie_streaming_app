@@ -39,13 +39,26 @@ class _SplashPageState extends State<SplashPage> {
         backgroundColor: UiHelper.scaffoldBg,
         body: Container(
           decoration: const BoxDecoration(
-            gradient: RadialGradient(
-              center: Alignment.center,
-              radius: 0.8,
-              colors: [Color(0xFF0055AA), Colors.black],
-              stops: [0.0, 1.0],
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFF00004A), // Black (top)
+                Color(0xFF000026), // Dark blue
+                Color(0xFF000026), // Blue peak
+                Color(0xFF000026), // Dark blue
+                Color(0xFF00004A), // Black (bottom)
+              ],
+              stops: [
+                0.0,
+                0.15,
+                0.5,
+                0.85,
+                1.0
+              ],
             ),
           ),
+
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
