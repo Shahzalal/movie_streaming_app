@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_streaming_app/core/utils/asset_path.dart';
 import 'package:movie_streaming_app/features/home/presentation/pages/home_page.dart';
+import 'package:movie_streaming_app/features/login/presentation/pages/login.dart';
 import 'package:movie_streaming_app/shared_widgets/app_logo.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -204,6 +205,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                                 ),
                                 onPressed: () {
                                   // Log in action
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
                                 },
                                 child: UiHelper.customText(
                                   text: "Log In",
