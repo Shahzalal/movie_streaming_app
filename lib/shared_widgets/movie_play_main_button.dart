@@ -6,9 +6,10 @@ import '../core/utils/ui_helper.dart';
 
 class MoviePlayButtonWidget extends StatelessWidget {
   const MoviePlayButtonWidget({
-    super.key, this.onTap,
+    super.key, this.onTap, required this.title,
   });
   final VoidCallback? onTap;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class MoviePlayButtonWidget extends StatelessWidget {
                 ),
                 SizedBox(width: SizeConfig.ws(8)),
                 UiHelper.customText(
-                  text: "Watch Movie",
+                  text: title,
                   fontsize: SizeConfig.ws(16),
                   color: Colors.white,
                   fontweight: FontWeight.w500,

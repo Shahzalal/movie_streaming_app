@@ -24,5 +24,14 @@ class AssetPath {
   static const String tc3Image = '$_imgUrl/tc3.png';
   static const String tc4Image = '$_imgUrl/tc4.png';
   static const String md1Image = '$_imgUrl/md1.png';
+  static const String hs1Image = '$_imgUrl/heroSerices1.png';
+  static const String hs2Image = '$_imgUrl/heroSerices2.png';
+  static const String hs3Image = '$_imgUrl/heroSerices3.png';
+  static const String pg1Image = '$_imgUrl/videoPregressBar.png';
+  static const String sl1Image = '$_imgUrl/seriesList1.png';
+  static const String sl2Image = '$_imgUrl/seriesList2.png';
+  static const String sl3Image = '$_imgUrl/seriesList3.png';
+  static const String sl4Image = '$_imgUrl/seriesList4.png';
+  static const String sl5Image = '$_imgUrl/seriesList5.png';
 
 }

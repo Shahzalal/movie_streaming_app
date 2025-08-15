@@ -57,7 +57,9 @@ class HomePage extends StatelessWidget {
 
                     SizedBox(height: SizeConfig.hs(16)),
 
-                    MoviePlayButtonWidget(onTap: (){
+                    MoviePlayButtonWidget(
+                      title: 'Watch Movie',
+                      onTap: (){
                       showModalBottomSheet(
                         context: context,
                         isScrollControlled: true, // fullscreen height possible

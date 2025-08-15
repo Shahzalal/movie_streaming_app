@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_streaming_app/core/utils/ui_helper.dart';
 import 'package:movie_streaming_app/features/on_boarding/presentation/pages/on_boarding_page.dart';
+import 'package:movie_streaming_app/features/series_details/presentation/pages/series_details.dart';
 import 'package:movie_streaming_app/shared_widgets/custom_status_bar.dart';
 import 'package:movie_streaming_app/shared_widgets/app_logo.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -25,7 +26,8 @@ class _SplashPageState extends State<SplashPage> {
     await Future.delayed(Duration(seconds: 2)).then((_) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => OnBoardingPage()),
+        // MaterialPageRoute(builder: (context) => OnBoardingPage()),
+        MaterialPageRoute(builder: (context) => SeriesDetails()),
       );
     });
   }

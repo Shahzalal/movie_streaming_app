@@ -29,7 +29,7 @@ class MovieDetailScreen extends StatelessWidget {
                   Image.asset(
                     AssetPath.heroImage,
                     width: SizeConfig.screenWidth,
-                    height: SizeConfig.hs(400),
+                    height: SizeConfig.hs(340),
                     fit: BoxFit.cover,
                   ),
                   // Gradient Overlay
@@ -199,13 +199,13 @@ class MovieDetailScreen extends StatelessWidget {
                     // Trailers Section
                     UiHelper.customText(
                       text: "Trailers",
-                      fontsize: SizeConfig.ws(18),
+                      fontsize: SizeConfig.ws(16),
                       fontweight: FontWeight.w600,
                       color: AppColors.mainTextColor,
                     ),
                     SizedBox(height: SizeConfig.hs(12)),
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(SizeConfig.ws(12)),
+                      borderRadius: BorderRadius.circular(SizeConfig.ws(6)),
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
@@ -227,6 +227,7 @@ class MovieDetailScreen extends StatelessWidget {
 
                     // Watch Movie Button
                     MoviePlayButtonWidget(
+                      title: 'Watch Movie',
                       onTap: () {
                         showModalBottomSheet(
                           context: context,
