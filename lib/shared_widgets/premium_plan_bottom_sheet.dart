@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_streaming_app/features/video/presentation/pages/video_player.dart';
 import '../../../../core/utils/size_config.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/ui_helper.dart';
@@ -125,6 +126,7 @@ class PremiumPlanBottomSheet extends StatelessWidget {
                     ),
                     onPressed: () {
                       // Action
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomVideoPlayer()));
                     },
                     child: UiHelper.customText(
                       text: "Start your 14-days trial",

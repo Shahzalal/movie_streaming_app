@@ -5,6 +5,7 @@ import 'package:movie_streaming_app/shared_widgets/movie_play_main_button.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/asset_path.dart';
 import '../../../../core/utils/size_config.dart';
+import '../../../video/presentation/pages/video_player.dart';
 import '../widgets/show_episode_bottom_sheet.dart';
 
 class SeriesDetails extends StatelessWidget {
@@ -189,25 +190,30 @@ class SeriesDetails extends StatelessWidget {
                         SizedBox(height: SizeConfig.hs(12)),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(SizeConfig.ws(6)),
-                          child: Stack(
-                            children: [
-                              Image.asset(
-                                AssetPath.hs2Image,
-                                width: SizeConfig.screenWidth,
-                                height: SizeConfig.hs(200),
-                                fit: BoxFit.cover,
-                              ),
-                              Positioned(
-                                top: SizeConfig.hs(160),
-                                left: SizeConfig.ws(10),
-                                child: Image.asset(
-                                  AssetPath.pg1Image,
-                                  width: SizeConfig.ws(320),
-                                  height: SizeConfig.hs(30),
+                          child: GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomVideoPlayer()));
+                            },
+                            child: Stack(
+                              children: [
+                                Image.asset(
+                                  AssetPath.hs2Image,
+                                  width: SizeConfig.screenWidth,
+                                  height: SizeConfig.hs(200),
                                   fit: BoxFit.cover,
                                 ),
-                              ),
-                            ],
+                                Positioned(
+                                  top: SizeConfig.hs(160),
+                                  left: SizeConfig.ws(10),
+                                  child: Image.asset(
+                                    AssetPath.pg1Image,
+                                    width: SizeConfig.ws(320),
+                                    height: SizeConfig.hs(30),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         SizedBox(height: SizeConfig.hs(10)),
@@ -219,7 +225,9 @@ class SeriesDetails extends StatelessWidget {
                         SizedBox(height: SizeConfig.hs(20)),
                         MoviePlayButtonWidget(
                           title: 'Continue Watch S2E4',
-                          onTap: () {},
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomVideoPlayer()));
+                          },
                         ),
                         SizedBox(height: SizeConfig.hs(30)),
 
@@ -249,21 +257,26 @@ class SeriesDetails extends StatelessWidget {
                         SizedBox(height: SizeConfig.hs(12)),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(SizeConfig.ws(6)),
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Image.asset(
-                                AssetPath.md1Image,
-                                width: SizeConfig.screenWidth,
-                                height: SizeConfig.hs(200),
-                                fit: BoxFit.cover,
-                              ),
-                              Icon(
-                                Icons.play_circle_fill,
-                                size: SizeConfig.ws(50),
-                                color: AppColors.mainTextColor,
-                              ),
-                            ],
+                          child: GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomVideoPlayer()));
+                            },
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Image.asset(
+                                  AssetPath.md1Image,
+                                  width: SizeConfig.screenWidth,
+                                  height: SizeConfig.hs(200),
+                                  fit: BoxFit.cover,
+                                ),
+                                Icon(
+                                  Icons.play_circle_fill,
+                                  size: SizeConfig.ws(50),
+                                  color: AppColors.mainTextColor,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         SizedBox(height: SizeConfig.hs(10)),
@@ -275,7 +288,9 @@ class SeriesDetails extends StatelessWidget {
                         SizedBox(height: SizeConfig.hs(20)),
                         MoviePlayButtonWidget(
                           title: 'Continue Watch S2E4',
-                          onTap: () {},
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomVideoPlayer()));
+                          },
                         ),
                       ],
                     ),

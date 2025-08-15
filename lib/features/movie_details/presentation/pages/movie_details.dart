@@ -7,6 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/asset_path.dart';
 import '../../../../core/utils/size_config.dart';
 import '../../../../shared_widgets/premium_plan_bottom_sheet.dart';
+import '../../../video/presentation/pages/video_player.dart';
 import '../widget/movie_description_sheet.dart';
 
 class MovieDetailScreen extends StatelessWidget {
@@ -206,21 +207,26 @@ class MovieDetailScreen extends StatelessWidget {
                     SizedBox(height: SizeConfig.hs(12)),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(SizeConfig.ws(6)),
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Image.asset(
-                            AssetPath.md1Image,
-                            width: SizeConfig.screenWidth,
-                            height: SizeConfig.hs(200),
-                            fit: BoxFit.cover,
-                          ),
-                          Icon(
-                            Icons.play_circle_fill,
-                            size: SizeConfig.ws(50),
-                            color: AppColors.mainTextColor,
-                          ),
-                        ],
+                      child: GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomVideoPlayer()));
+                        },
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Image.asset(
+                              AssetPath.md1Image,
+                              width: SizeConfig.screenWidth,
+                              height: SizeConfig.hs(200),
+                              fit: BoxFit.cover,
+                            ),
+                            Icon(
+                              Icons.play_circle_fill,
+                              size: SizeConfig.ws(50),
+                              color: AppColors.mainTextColor,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(height: SizeConfig.hs(20)),

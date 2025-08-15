@@ -4,6 +4,8 @@ import 'package:movie_streaming_app/core/utils/ui_helper.dart';
 import 'package:movie_streaming_app/core/theme/app_colors.dart';
 import 'package:movie_streaming_app/core/utils/asset_path.dart';
 
+import '../../../video/presentation/pages/video_player.dart';
+
 void showEpisodesBottomSheet(BuildContext context) {
   SizeConfig.init(context);
 
@@ -79,41 +81,46 @@ void showEpisodesBottomSheet(BuildContext context) {
                       padding: EdgeInsets.symmetric(
                         vertical: SizeConfig.hs(10),
                       ),
-                      child: Row(
-                        children: [
-                          /// Episode Thumbnail
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              ClipRRect(
-                                borderRadius:
-                                BorderRadius.circular(SizeConfig.ws(10)),
-                                child: Image.asset(
-                                  ep['image']!,
-                                  width: SizeConfig.ws(140),
-                                  height: SizeConfig.hs(85),
-                                  fit: BoxFit.cover,
+                      child: GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomVideoPlayer()));
+                        },
+                        child: Row(
+                          children: [
+                            /// Episode Thumbnail
+                            Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                ClipRRect(
+                                  borderRadius:
+                                  BorderRadius.circular(SizeConfig.ws(10)),
+                                  child: Image.asset(
+                                    ep['image']!,
+                                    width: SizeConfig.ws(140),
+                                    height: SizeConfig.hs(85),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
-                              Icon(
-                                Icons.play_circle_fill,
-                                color: Colors.white,
-                                size: SizeConfig.ws(38),
-                              ),
-                            ],
-                          ),
-                          SizedBox(width: SizeConfig.ws(14)),
-
-                          /// Episode Title
-                          Expanded(
-                            child: UiHelper.customText(
-                              text: ep['title']!,
-                              fontsize: SizeConfig.ws(16),
-                              color: AppColors.mainTextColor,
-                              maxLines: 2,
+                                Icon(
+                                  Icons.play_circle_fill,
+                                  color: Colors.white,
+                                  size: SizeConfig.ws(38),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
+                            SizedBox(width: SizeConfig.ws(14)),
+
+                            /// Episode Title
+                            Expanded(
+                              child: UiHelper.customText(
+                                text: ep['title']!,
+                                fontsize: SizeConfig.ws(16),
+                                color: AppColors.mainTextColor,
+                                maxLines: 2,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   }),
