@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/theme/app_colors.dart';
 import '../core/utils/size_config.dart';
 import '../core/utils/ui_helper.dart';
+import '../features/home/presentation/pages/home_page.dart';
 
 class AuthAppBarWidget extends StatelessWidget {
   const AuthAppBarWidget({
@@ -30,7 +31,9 @@ class AuthAppBarWidget extends StatelessWidget {
           fontsize: SizeConfig.ws(20),
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+          },
           child: UiHelper.customText(
             text: "Skip",
             color: AppColors.versionTextColor,

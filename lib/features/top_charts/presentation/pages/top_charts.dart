@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_streaming_app/core/utils/asset_path.dart';
 import 'package:movie_streaming_app/core/utils/size_config.dart';
+import 'package:movie_streaming_app/features/movie_details/presentation/pages/movie_details.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/ui_helper.dart';
 
@@ -104,11 +105,16 @@ class TopChartsPage extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(SizeConfig.ws(2)),
-                    child: Image.asset(
-                      movie["image"],
-                      width: itemWidth,
-                      height: itemHeight,
-                      fit: BoxFit.cover,
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>MovieDetailScreen()));
+                      },
+                      child: Image.asset(
+                        movie["image"],
+                        width: itemWidth,
+                        height: itemHeight,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   SizedBox(height: SizeConfig.hs(8)),

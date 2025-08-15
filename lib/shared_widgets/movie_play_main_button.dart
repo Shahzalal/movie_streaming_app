@@ -6,8 +6,9 @@ import '../core/utils/ui_helper.dart';
 
 class MoviePlayButtonWidget extends StatelessWidget {
   const MoviePlayButtonWidget({
-    super.key,
+    super.key, this.onTap,
   });
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class MoviePlayButtonWidget extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primaryBlue,
               padding: EdgeInsets.symmetric(
-                vertical: SizeConfig.hs(14),
+                vertical: SizeConfig.hs(12),
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
@@ -27,7 +28,7 @@ class MoviePlayButtonWidget extends StatelessWidget {
                 ),
               ),
             ),
-            onPressed: () {},
+            onPressed: onTap,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

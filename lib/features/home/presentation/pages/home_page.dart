@@ -5,8 +5,9 @@ import 'package:movie_streaming_app/core/utils/ui_helper.dart';
 import 'package:movie_streaming_app/shared_widgets/custom_status_bar.dart';
 
 import '../../../../shared_widgets/home_hero_widget.dart';
-import '../../../../shared_widgets/movie_play_mian_button.dart';
+import '../../../../shared_widgets/movie_play_main_button.dart';
 import '../../../../shared_widgets/movie_rating_year_gerne_widget.dart';
+import '../../../../shared_widgets/premium_plan_bottom_sheet.dart';
 import '../../../top_charts/presentation/pages/top_charts.dart';
 import '../widgets/home_custom_page_indicator_widget.dart';
 import '../widgets/movie_title_rating_text_widget.dart';
@@ -56,7 +57,17 @@ class HomePage extends StatelessWidget {
 
                     SizedBox(height: SizeConfig.hs(16)),
 
-                    MoviePlayButtonWidget(),
+                    MoviePlayButtonWidget(onTap: (){
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true, // fullscreen height possible
+                        backgroundColor: Colors.transparent,
+                        builder: (_) => SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.85, // 85% height
+                          child: PremiumPlanBottomSheet(),
+                        ),
+                      );
+                    },),
                   ],
                 ),
               ),
