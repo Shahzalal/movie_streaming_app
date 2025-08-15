@@ -6,22 +6,17 @@ import 'package:movie_streaming_app/core/utils/size_config.dart';
 import 'package:movie_streaming_app/features/home/presentation/pages/home_page.dart';
 import '../../../navigation/controller/bottom_navigation_controller.dart';
 
-class HomeBottomNavScreen extends StatefulWidget {
-  const HomeBottomNavScreen({super.key});
 
-  @override
-  State<HomeBottomNavScreen> createState() => _HomeBottomNavScreenState();
-}
+class HomeBottomNavScreen extends StatelessWidget {
+  HomeBottomNavScreen({super.key});
 
-class _HomeBottomNavScreenState extends State<HomeBottomNavScreen> {
-  final BottomNavigationController controller =
-  Get.put(BottomNavigationController());
+  final BottomNavigationController controller = Get.put(BottomNavigationController());
 
   final List<Widget> screens = [
-     HomePage(),
-     HomePage(),
-     HomePage(),
-     HomePage(),
+    HomePage(),
+    HomePage(),
+    HomePage(),
+    HomePage(),
   ];
 
   @override
@@ -41,57 +36,42 @@ class _HomeBottomNavScreenState extends State<HomeBottomNavScreen> {
             currentIndex: controller.selectedIndex,
             onTap: (index) => controller.changeIndex(index),
             type: BottomNavigationBarType.fixed,
-            selectedLabelStyle: TextStyle(
-              fontSize: SizeConfig.ws(12),
-              fontWeight: FontWeight.w600,
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontSize: SizeConfig.ws(12),
-            ),
             items: [
               BottomNavigationBarItem(
                 icon: Image.asset(
                   AssetPath.homeNavImage,
+                  color: controller.selectedIndex == 0 ? AppColors.primaryBlue : Colors.grey,
                   height: SizeConfig.ws(24),
                   width: SizeConfig.ws(24),
-                  color: controller.selectedIndex == 0
-                      ? AppColors.primaryBlue
-                      : Colors.grey,
                 ),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
                 icon: Image.asset(
                   AssetPath.bookmarkNavImage,
+                  color: controller.selectedIndex == 1 ? AppColors.primaryBlue : Colors.grey,
                   height: SizeConfig.ws(24),
                   width: SizeConfig.ws(24),
-                  color: controller.selectedIndex == 1
-                      ? AppColors.primaryBlue
-                      : Colors.grey,
                 ),
-                label: 'Cart',
+                label: 'WatchList',
               ),
               BottomNavigationBarItem(
                 icon: Image.asset(
                   AssetPath.searchNavImage,
+                  color: controller.selectedIndex == 2 ? AppColors.primaryBlue : Colors.grey,
                   height: SizeConfig.ws(24),
                   width: SizeConfig.ws(24),
-                  color: controller.selectedIndex == 2
-                      ? AppColors.primaryBlue
-                      : Colors.grey,
                 ),
-                label: 'Category',
+                label: 'Search',
               ),
               BottomNavigationBarItem(
                 icon: Image.asset(
                   AssetPath.personNavImage,
+                  color: controller.selectedIndex == 3 ? AppColors.primaryBlue : Colors.grey,
                   height: SizeConfig.ws(24),
                   width: SizeConfig.ws(24),
-                  color: controller.selectedIndex == 3
-                      ? AppColors.primaryBlue
-                      : Colors.grey,
                 ),
-                label: 'Profile',
+                label: 'Account',
               ),
             ],
           );
@@ -100,3 +80,4 @@ class _HomeBottomNavScreenState extends State<HomeBottomNavScreen> {
     );
   }
 }
+

@@ -19,4 +19,9 @@ class AssetPath {
   static const String actor1Image = '$_imgUrl/actor1.png';
   static const String actor2Image = '$_imgUrl/actor2.png';
   static const String actor3Image = '$_imgUrl/actor3.png';
+  static const String tc1Image = '$_imgUrl/tc1.png';
+  static const String tc2Image = '$_imgUrl/tc2.png';
+  static const String tc3Image = '$_imgUrl/tc3.png';
+  static const String tc4Image = '$_imgUrl/tc4.png';
+
 }

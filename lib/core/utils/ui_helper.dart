@@ -10,14 +10,18 @@ class UiHelper {
     String? fontfamily,
     FontWeight? fontweight,
     Color? color,
+    int? maxLines,
   }) {
     return Text(
       text,
+      maxLines:maxLines??1,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(
         fontSize: fontsize,
         fontFamily: fontfamily ?? "regular",
         color: color ?? Colors.black, // Default color (light mode)
         fontWeight: fontweight ?? FontWeight.normal,
+
       ),
     );
   }

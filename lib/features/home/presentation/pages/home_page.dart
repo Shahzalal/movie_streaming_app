@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:movie_streaming_app/core/theme/app_colors.dart';
 import 'package:movie_streaming_app/core/utils/size_config.dart';
 import 'package:movie_streaming_app/core/utils/asset_path.dart';
 import 'package:movie_streaming_app/core/utils/ui_helper.dart';
 import 'package:movie_streaming_app/shared_widgets/custom_status_bar.dart';
+
+import '../../../../shared_widgets/home_hero_widget.dart';
+import '../../../../shared_widgets/movie_play_mian_button.dart';
+import '../../../../shared_widgets/movie_rating_year_gerne_widget.dart';
+import '../../../top_charts/presentation/pages/top_charts.dart';
+import '../widgets/home_custom_page_indicator_widget.dart';
+import '../widgets/movie_title_rating_text_widget.dart';
+import '../widgets/section_header_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,24 +20,11 @@ class HomePage extends StatelessWidget {
     SizeConfig.init(context);
 
     final List<Map<String, String>> actors = [
-      {
-        'imagePath': AssetPath.actor1Image,
-        'name': 'Chris Evans',
-      },
-      {
-        'imagePath': AssetPath.actor2Image,
-        'name': 'Robert Downey Jr.',
-      },
-      {
-        'imagePath': AssetPath.actor3Image,
-        'name': 'Emma Watson',
-      },
-      {
-        'imagePath': AssetPath.actor1Image,
-        'name': 'Chris Evans',
-      },
+      {'imagePath': AssetPath.actor1Image, 'name': 'Chris Evans'},
+      {'imagePath': AssetPath.actor2Image, 'name': 'Robert Downey Jr.'},
+      {'imagePath': AssetPath.actor3Image, 'name': 'Emma Watson'},
+      {'imagePath': AssetPath.actor1Image, 'name': 'Chris Evans'},
     ];
-
 
     return CustomStatusBar(
       child: Scaffold(
@@ -40,57 +34,7 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               /// ================= Banner =================
-              Stack(
-                children: [
-                  Image.asset(
-                    AssetPath.heroImage,
-                    width: SizeConfig.screenWidth,
-                    height: SizeConfig.hs(400),
-                    fit: BoxFit.cover,
-                  ),
-
-                  Positioned.fill(
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        height: SizeConfig.hs(120),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Colors.transparent,
-                              Colors.black.withOpacity(0.7),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  Positioned(
-                    left: SizeConfig.ws(16),
-                    bottom: 0,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        UiHelper.customText(
-                          text: "Rogue One: A Star Wars",
-                          fontsize: SizeConfig.ws(24),
-                          fontweight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                        UiHelper.customText(
-                          text: "Story",
-                          fontsize: SizeConfig.ws(24),
-                          fontweight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+              HomeHeroWidget(),
 
               /// Details in the black section below
               Container(
@@ -103,103 +47,16 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(bottom: SizeConfig.hs(2)),
-                          child: Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                            size: SizeConfig.ws(18),
-                          ),
-                        ),
-                        SizedBox(width: SizeConfig.ws(4)),
-                        UiHelper.customText(
-                          text: "8.4",
-                          fontsize: SizeConfig.ws(14),
-                          color: Colors.white,
-                        ),
-                        SizedBox(width: SizeConfig.ws(10)),
-                        UiHelper.customText(
-                          text: "2016",
-                          fontsize: SizeConfig.ws(14),
-                          color: Colors.white70,
-                        ),
-                        SizedBox(width: SizeConfig.ws(10)),
-                        UiHelper.customText(
-                          text: "1h 54m",
-                          fontsize: SizeConfig.ws(14),
-                          color: Colors.white70,
-                        ),
-                        SizedBox(width: SizeConfig.ws(10)),
-                        UiHelper.customText(
-                          text: "Sci-Fi",
-                          fontsize: SizeConfig.ws(14),
-                          color: Colors.white70,
-                        ),
-                      ],
+                    MovieRatingYearGenreWidget(
+                      rating: 8.4,
+                      year: '2016',
+                      duration: '1h 54m',
+                      genre: 'Sci-Fi',
                     ),
 
                     SizedBox(height: SizeConfig.hs(16)),
 
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.primaryBlue,
-                              padding: EdgeInsets.symmetric(
-                                vertical: SizeConfig.hs(14),
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  SizeConfig.ws(8),
-                                ),
-                              ),
-                            ),
-                            onPressed: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.play_circle_fill,
-                                  color: Colors.white,
-                                  size: SizeConfig.ws(20),
-                                ),
-                                SizedBox(width: SizeConfig.ws(8)),
-                                UiHelper.customText(
-                                  text: "Watch Movie",
-                                  fontsize: SizeConfig.ws(16),
-                                  color: Colors.white,
-                                  fontweight: FontWeight.w500,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: SizeConfig.ws(10)),
-                        Container(
-                          width: SizeConfig.ws(48),
-                          height: SizeConfig.ws(48),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF282828),
-                            borderRadius: BorderRadius.circular(
-                              SizeConfig.ws(8),
-                            ),
-                          ),
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.bookmark_border,
-                              color: Colors.white,
-                              size: SizeConfig.ws(22),
-                            ),
-                            onPressed: () {},
-                          ),
-                        ),
-                      ],
-                    ),
+                    MoviePlayButtonWidget(),
                   ],
                 ),
               ),
@@ -207,7 +64,13 @@ class HomePage extends StatelessWidget {
               SizedBox(height: SizeConfig.hs(20)),
 
               /// ================= Top Charts =================
-              sectionHeader("Top Charts", "View All"),
+              SectionHeaderWidget(title: "Top Charts", action: "View All",onActionTap: () {
+                // Navigate to TopChartsPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TopChartsPage()),
+                );
+              },),
               SizedBox(height: SizeConfig.hs(12)),
               horizontalMovieList(
                 movies: [
@@ -218,7 +81,6 @@ class HomePage extends StatelessWidget {
                     'year': '2015',
                     'duration': '1h 24m',
                     'genre': 'Sci-Fi',
-
                   },
                   {
                     'imagePath': AssetPath.heroImage,
@@ -232,7 +94,7 @@ class HomePage extends StatelessWidget {
               ),
 
               /// ================= Weekly Highlight =================
-              sectionHeader("Weekly Highlight", ""),
+              SectionHeaderWidget(title: "Weekly Highlight", action: ""),
               SizedBox(height: SizeConfig.hs(12)),
               horizontalMovieList(
                 movies: [
@@ -245,90 +107,64 @@ class HomePage extends StatelessWidget {
                     'genre': 'Sci-Fi',
                     'progress': 0.6, // optional
                     'time': '01:14',
-                    'height':SizeConfig.hs(220),
-                    'width':SizeConfig.screenWidth*0.95,
+                    'height': SizeConfig.hs(220),
+                    'width': SizeConfig.screenWidth * 0.95,
                     // optional
                   },
-
                 ],
-                indicator: customPageIndicator(0, 3),
+                indicator: HomeCustomPageIndicatorWidget(
+                  currentIndex: 0,
+                  total: 3,
+                ),
               ),
-
 
               SizedBox(height: SizeConfig.hs(20)),
 
               /// ================= Popular Star =================
-              sectionHeader("Popular Star", ""),
+              SectionHeaderWidget(title: "Popular Star", action: ""),
               SizedBox(height: SizeConfig.hs(12)),
 
-      SizedBox(
-      height: SizeConfig.hs(150),
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.only(left: SizeConfig.ws(16)),
-        itemCount: actors.length,
-        itemBuilder: (context, index) {
-          final actor = actors[index];
-          double imageSize = SizeConfig.ws(90);
-          return Container(
-            width: SizeConfig.ws(100),
-            margin: EdgeInsets.only(right: SizeConfig.ws(10)),
-            child: Column(
-              children: [
-                Container(
-                  height: imageSize,
-                  width: imageSize,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(actor['imagePath']!),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+              SizedBox(
+                height: SizeConfig.hs(150),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.only(left: SizeConfig.ws(16)),
+                  itemCount: actors.length,
+                  itemBuilder: (context, index) {
+                    final actor = actors[index];
+                    double imageSize = SizeConfig.ws(90);
+                    return Container(
+                      width: SizeConfig.ws(100),
+                      margin: EdgeInsets.only(right: SizeConfig.ws(10)),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: imageSize,
+                            width: imageSize,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(actor['imagePath']!),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: SizeConfig.hs(8)),
+                          UiHelper.customText(
+                            text: actor['name']!,
+                            fontsize: SizeConfig.ws(14),
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
-                SizedBox(height: SizeConfig.hs(8)),
-                UiHelper.customText(
-                  text: actor['name']!,
-                  fontsize: SizeConfig.ws(14),
-                  color: Colors.white,
+              ),
 
-                ),
-              ],
-            ),
-          );
-        },
-      ),
-    ),
-
-
-    SizedBox(height: SizeConfig.hs(10)),
+              SizedBox(height: SizeConfig.hs(10)),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  /// Reusable header widget
-  Widget sectionHeader(String title, String action) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: SizeConfig.ws(16)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          UiHelper.customText(
-            text: title,
-            fontsize: SizeConfig.ws(18),
-            fontweight: FontWeight.bold,
-            color: Colors.white,
-          ),
-          action.isNotEmpty
-              ? UiHelper.customText(
-                  text: action,
-                  fontsize: SizeConfig.ws(14),
-                  color: AppColors.mainTextColor,
-                )
-              : const SizedBox(),
-        ],
       ),
     );
   }
@@ -398,7 +234,8 @@ class HomePage extends StatelessWidget {
                                     vertical: SizeConfig.hs(4),
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.4),
+                                    color: Color(0x66000000
+                                    ),
                                     borderRadius: BorderRadius.circular(6),
                                   ),
                                   child: Row(
@@ -410,12 +247,14 @@ class HomePage extends StatelessWidget {
                                       ),
                                       Expanded(
                                         child: SliderTheme(
-                                          data: SliderTheme.of(context).copyWith(
-                                            trackHeight: 1,
-                                            thumbShape: RoundSliderThumbShape(
-                                              enabledThumbRadius: 5,
-                                            ),
-                                          ),
+                                          data: SliderTheme.of(context)
+                                              .copyWith(
+                                                trackHeight: 1,
+                                                thumbShape:
+                                                    RoundSliderThumbShape(
+                                                      enabledThumbRadius: 5,
+                                                    ),
+                                              ),
                                           child: Slider(
                                             value: progress,
                                             onChanged: (_) {},
@@ -433,59 +272,18 @@ class HomePage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                            )
+                            ),
                         ],
                       ),
                     ),
 
                     /// Text Section
-                    Padding(
-                      padding: EdgeInsets.all(SizeConfig.ws(12)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          UiHelper.customText(
-                            text: title,
-                            fontsize: SizeConfig.ws(16),
-                            fontweight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                          SizedBox(height: SizeConfig.hs(6)),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.star,
-                                color: Colors.amber,
-                                size: SizeConfig.ws(16),
-                              ),
-                              SizedBox(width: SizeConfig.ws(4)),
-                              UiHelper.customText(
-                                text: rating,
-                                fontsize: SizeConfig.ws(14),
-                                color: Colors.white,
-                              ),
-                              SizedBox(width: SizeConfig.ws(10)),
-                              UiHelper.customText(
-                                text: year,
-                                fontsize: SizeConfig.ws(14),
-                                color: Colors.white70,
-                              ),
-                              SizedBox(width: SizeConfig.ws(10)),
-                              UiHelper.customText(
-                                text: duration,
-                                fontsize: SizeConfig.ws(14),
-                                color: Colors.white70,
-                              ),
-                              SizedBox(width: SizeConfig.ws(10)),
-                              UiHelper.customText(
-                                text: genre,
-                                fontsize: SizeConfig.ws(14),
-                                color: Colors.white70,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                    MovieTitleRatingTextWidget(
+                      title: title,
+                      rating: rating,
+                      year: year,
+                      duration: duration,
+                      genre: genre,
                     ),
                   ],
                 ),
@@ -502,27 +300,6 @@ class HomePage extends StatelessWidget {
       ],
     );
   }
-
-
-  Widget customPageIndicator(int currentIndex, int total) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(total, (index) {
-        bool isActive = index == currentIndex;
-        return AnimatedContainer(
-          duration: Duration(milliseconds: 300),
-          margin: EdgeInsets.symmetric(horizontal: 4),
-          height: isActive ? SizeConfig.hs(10) : SizeConfig.hs(6),
-          width: SizeConfig.ws(6),
-          decoration: BoxDecoration(
-            color: isActive ? Colors.blue : Colors.grey[700],
-            borderRadius: BorderRadius.circular(SizeConfig.ws(20)),
-          ),
-        );
-      }),
-    );
-  }
-
-
-
 }
+
+
