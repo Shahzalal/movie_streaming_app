@@ -39,6 +39,7 @@ dependencies:
   pinput: ^5.0.1
   flick_video_player: ^0.9.0
   video_player: ^2.10.0
+  carousel_slider: ^5.1.1
 
 dev_dependencies:
   flutter_test:

@@ -1,75 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:movie_streaming_app/core/utils/size_config.dart';
-
+import 'package:movie_streaming_app/domain/entities/models/top_charts.dart';
 import '../../../../core/utils/ui_helper.dart';
 
 class MovieTitleRatingTextWidget extends StatelessWidget {
-  const MovieTitleRatingTextWidget({
-    super.key,
-    required this.title,
-    required this.rating,
-    required this.year,
-    required this.duration,
-    required this.genre,
-  });
+  const MovieTitleRatingTextWidget({super.key, required this.topCharts});
 
-  final String title;
-  final String rating;
-  final String year;
-  final String duration;
-  final String genre;
+  final TopChartModel topCharts;
 
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
+
+    /// common info list
+    final infoList = [
+      topCharts.releaseYear,
+      topCharts.duration,
+      topCharts.genre,
+    ];
+
     return Padding(
       padding: EdgeInsets.all(SizeConfig.ws(12)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          /// Title
           UiHelper.customText(
-            text: title,
+            text: topCharts.title,
             fontsize: SizeConfig.ws(16),
             fontweight: FontWeight.bold,
             color: Colors.white,
           ),
           SizedBox(height: SizeConfig.hs(6)),
+
+          /// Rating + Info Row
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(
-                Icons.star,
-                color: Colors.amber,
-                size: SizeConfig.ws(16),
-              ),
+              Icon(Icons.star, color: Colors.amber, size: SizeConfig.ws(16)),
               SizedBox(width: SizeConfig.ws(4)),
-              UiHelper.customText(
-                text: rating,
-                fontsize: SizeConfig.ws(14),
-                color: Colors.white,
-              ),
-              SizedBox(width: SizeConfig.ws(10)),
-              UiHelper.customText(
-                text: year,
-                fontsize: SizeConfig.ws(14),
-                color: Colors.white70,
-              ),
-              SizedBox(width: SizeConfig.ws(10)),
-              UiHelper.customText(
-                text: duration,
-                fontsize: SizeConfig.ws(14),
-                color: Colors.white70,
-              ),
-              SizedBox(width: SizeConfig.ws(10)),
-              UiHelper.customText(
-                text: genre,
-                fontsize: SizeConfig.ws(14),
-                color: Colors.white70,
+
+              /// rating
+              _infoText(topCharts.rating.toStringAsFixed(1), isPrimary: true),
+
+              ...infoList.map(
+                (info) => Padding(
+                  padding: EdgeInsets.only(left: SizeConfig.ws(10)),
+                  child: _infoText(info),
+                ),
               ),
             ],
           ),
         ],
       ),
+    );
+  }
+
+  /// 🔹 Reusable text widget
+  Widget _infoText(String text, {bool isPrimary = false}) {
+    return UiHelper.customText(
+      text: text,
+      fontsize: SizeConfig.ws(14),
+      color: isPrimary ? Colors.white : Colors.white70,
     );
   }
 }

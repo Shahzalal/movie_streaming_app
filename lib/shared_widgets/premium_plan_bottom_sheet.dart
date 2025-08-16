@@ -4,7 +4,7 @@ import 'package:movie_streaming_app/features/video/presentation/pages/video_play
 import '../../../../core/utils/size_config.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/ui_helper.dart';
-import '../features/navigation/controller/plan_controller.dart';
+import '../features/getx/controller/plan_controller.dart';
 
 class PremiumPlanBottomSheet extends StatelessWidget {
   PremiumPlanBottomSheet({super.key});
@@ -62,7 +62,7 @@ class PremiumPlanBottomSheet extends StatelessWidget {
                       SizedBox(height: SizeConfig.hs(8)),
                       UiHelper.customText(
                         text:
-                            "Get the premium plan and get unlimited access content for watching movies.",
+                        "Get the premium plan and get unlimited access content for watching movies.",
                         fontsize: SizeConfig.ws(14),
                         color: AppColors.bodyTextColor,
                         textAlign: TextAlign.center,
@@ -71,20 +71,16 @@ class PremiumPlanBottomSheet extends StatelessWidget {
                       SizedBox(height: SizeConfig.hs(24)),
 
                       // Plan Options
-                      Row(
-                        children: [
-                          _buildPlanCard(
-                            title: "Annually",
-                            price: "\$79.99 / year",
-                            desc: "Billed annually with 14-day",
-                          ),
-                          SizedBox(width: SizeConfig.ws(12)),
-                          _buildPlanCard(
-                            title: "Monthly",
-                            price: "\$7.99 / monthly",
-                            desc: "Billed monthly",
-                          ),
-                        ],
+                      GetBuilder<PlanController>(
+                        builder: (_) {
+                          return Row(
+                            children: [
+                              _buildPlanCard(title: "Annually", price: "\$79.99 / year", desc: "Billed annually with 14-day"),
+                              SizedBox(width: SizeConfig.ws(12)),
+                              _buildPlanCard(title: "Monthly", price: "\$7.99 / monthly", desc: "Billed monthly"),
+                            ],
+                          );
+                        },
                       ),
                       SizedBox(height: SizeConfig.hs(30)),
 
@@ -150,47 +146,49 @@ class PremiumPlanBottomSheet extends StatelessWidget {
     required String desc,
   }) {
     return Expanded(
-      child: Obx(() {
-        bool isSelected = planController.selectedPlan.value == title;
-        return GestureDetector(
-          onTap: () => planController.selectPlan(title),
-          child: Container(
-            padding: EdgeInsets.all(SizeConfig.ws(12)),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(SizeConfig.ws(12)),
-              border: Border.all(
-                color: isSelected ? AppColors.primaryBlue : Colors.grey,
-                width: 2,
+      child: GestureDetector(
+        onTap: () => planController.selectPlan(title),
+        child: GetBuilder<PlanController>(
+          builder: (_) {
+            bool isSelected = planController.selectedPlan == title;
+            return Container(
+              padding: EdgeInsets.all(SizeConfig.ws(12)),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(SizeConfig.ws(12)),
+                border: Border.all(
+                  color: isSelected ? AppColors.primaryBlue : Colors.grey,
+                  width: 2,
+                ),
               ),
-            ),
-            child: Column(
-              children: [
-                UiHelper.customText(
-                  text: title,
-                  fontsize: SizeConfig.ws(12),
-                  fontweight: FontWeight.bold,
-                  color: AppColors.mainTextColor,
-                ),
-                SizedBox(height: SizeConfig.hs(6)),
-                UiHelper.customText(
-                  text: price,
-                  fontsize: SizeConfig.ws(16),
-                  fontweight: FontWeight.bold,
-                  color: AppColors.mainTextColor,
-                ),
-                SizedBox(height: SizeConfig.hs(4)),
-                UiHelper.customText(
-                  text: desc,
-                  fontsize: SizeConfig.ws(10),
-                  color: AppColors.bodyTextColor,
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          ),
-        );
-      }),
+              child: Column(
+                children: [
+                  UiHelper.customText(
+                    text: title,
+                    fontsize: SizeConfig.ws(12),
+                    fontweight: FontWeight.bold,
+                    color: AppColors.mainTextColor,
+                  ),
+                  SizedBox(height: SizeConfig.hs(6)),
+                  UiHelper.customText(
+                    text: price,
+                    fontsize: SizeConfig.ws(16),
+                    fontweight: FontWeight.bold,
+                    color: AppColors.mainTextColor,
+                  ),
+                  SizedBox(height: SizeConfig.hs(4)),
+                  UiHelper.customText(
+                    text: desc,
+                    fontsize: SizeConfig.ws(10),
+                    color: AppColors.bodyTextColor,
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 

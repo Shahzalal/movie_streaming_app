@@ -22,7 +22,9 @@ class AuthAppBarWidget extends StatelessWidget {
             Icons.arrow_back_ios,
             color: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         UiHelper.customText(
           text: appTitle,

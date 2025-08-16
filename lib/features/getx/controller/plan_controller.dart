@@ -1,9 +1,11 @@
+
 import 'package:get/get.dart';
 
 class PlanController extends GetxController {
-  RxString selectedPlan = "Annually".obs;
+  String selectedPlan = "Annually";
 
   void selectPlan(String plan) {
-    selectedPlan.value = plan;
+    selectedPlan = plan;
+    update();
   }
 }
