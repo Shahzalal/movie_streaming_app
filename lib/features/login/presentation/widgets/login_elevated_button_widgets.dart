@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_streaming_app/features/bottom_navigation_bar/presentation/pages/bottom_navigation_bar.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
@@ -19,7 +20,9 @@ class LoginElevatedButtonWidget extends StatelessWidget {
       width: double.infinity,
       height: SizeConfig.hs(48),
       child: ElevatedButton(
-        onPressed: isEmailFilled ? () {} : null,
+        onPressed: isEmailFilled ? () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeBottomNavScreen()));
+        } : null,
         style: ElevatedButton.styleFrom(
           backgroundColor:
           isEmailFilled ? AppColors.primaryBlue : Colors.white10,

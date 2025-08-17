@@ -1,8 +1,18 @@
 import 'package:get/get.dart';
+
 import '../../../domain/entities/models/accounts_tab.dart';
 
 class AccountController extends GetxController {
   AccountModel account = AccountModel.initial();
+
+  void addFavorite(String movie) {
+    final updatedList = List<String>.from(account.favoriteMovies);
+    if (!updatedList.contains(movie)) {
+      updatedList.add(movie);
+      account = account.copyWith(favoriteMovies: updatedList);
+      update();
+    }
+  }
 
   void removeFavorite(String movie) {
     final updatedList = List<String>.from(account.favoriteMovies)..remove(movie);
@@ -42,4 +52,3 @@ class AccountController extends GetxController {
     update();
   }
 }
-

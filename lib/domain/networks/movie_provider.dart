@@ -7,6 +7,7 @@ class MovieProvider {
 
     final demoData = [
       {
+        "title": "Rogue One: A Star Wars Story",
         "rating": 8.8,
         "releaseYear": "2012",
         "duration": "2h 28m",

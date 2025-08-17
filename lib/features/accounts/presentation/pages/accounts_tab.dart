@@ -40,41 +40,52 @@ class AccountTab extends StatelessWidget {
             padding: EdgeInsets.all(SizeConfig.ws(16)),
             child: Column(
               children: [
-                Card(
-                  color: Colors.grey[900],
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(SizeConfig.ws(12)),
-                  ),
-                  elevation: 3,
-                  child: Padding(
-                    padding: EdgeInsets.all(SizeConfig.ws(12)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        UiHelper.customText(
-                          text: "Favorite Movies",
-                          fontsize: SizeConfig.fs(18),
-                          fontweight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                        Divider(color: Colors.grey),
-                        ...account.favoriteMovies.map(
-                              (movie) => ListTile(
-                            title: UiHelper.customText(
-                              text: movie,
-                              fontsize: SizeConfig.fs(14),
+                GetBuilder<AccountController>(
+                  builder: (controller) {
+                    final account = controller.account;
+                    return Card(
+                      color: Colors.grey[900],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(SizeConfig.ws(12)),
+                      ),
+                      elevation: 3,
+                      child: Padding(
+                        padding: EdgeInsets.all(SizeConfig.ws(12)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            UiHelper.customText(
+                              text: "Favorite Movies",
+                              fontsize: SizeConfig.fs(18),
+                              fontweight: FontWeight.bold,
                               color: Colors.white,
                             ),
-                            trailing: IconButton(
-                              icon: Icon(Icons.delete, color: Colors.red),
-                              onPressed: () =>
-                                  controller.removeFavorite(movie),
+                            Divider(color: Colors.grey),
+                            if (account.favoriteMovies.isEmpty)
+                              UiHelper.customText(
+                                text: "No favorite movies yet",
+                                fontsize: SizeConfig.fs(14),
+                                color: Colors.grey,
+                              ),
+                            ...account.favoriteMovies.map(
+                              (movie) => ListTile(
+                                title: UiHelper.customText(
+                                  text: movie,
+                                  fontsize: SizeConfig.fs(14),
+                                  color: Colors.white,
+                                ),
+                                trailing: IconButton(
+                                  icon: Icon(Icons.delete, color: Colors.red),
+                                  onPressed: () =>
+                                      controller.removeFavorite(movie),
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
+                      ),
+                    );
+                  },
                 ),
 
                 SizedBox(height: SizeConfig.hs(16)),
@@ -98,7 +109,7 @@ class AccountTab extends StatelessWidget {
                         ),
                         Divider(color: Colors.grey),
                         ...account.downloads.map(
-                              (movie) => ListTile(
+                          (movie) => ListTile(
                             title: UiHelper.customText(
                               text: movie,
                               fontsize: SizeConfig.fs(14),
@@ -106,8 +117,7 @@ class AccountTab extends StatelessWidget {
                             ),
                             trailing: IconButton(
                               icon: Icon(Icons.delete, color: Colors.red),
-                              onPressed: () =>
-                                  controller.removeDownload(movie),
+                              onPressed: () => controller.removeDownload(movie),
                             ),
                           ),
                         ),
@@ -138,25 +148,26 @@ class AccountTab extends StatelessWidget {
                         Divider(color: Colors.grey),
                         Wrap(
                           spacing: SizeConfig.ws(8),
-                          children: ["Action", "Sci-Fi", "Drama", "Comedy"]
-                              .map((genre) {
-                            final isSelected =
-                            account.selectedGenres.contains(genre);
-                            return ChoiceChip(
-                              label: UiHelper.customText(
-                                text: genre,
-                                fontsize: SizeConfig.fs(14),
-                                color: isSelected
-                                    ? Colors.white
-                                    : Colors.grey[400],
-                              ),
-                              selected: isSelected,
-                              selectedColor: Colors.blue,
-                              backgroundColor: Colors.grey[800],
-                              onSelected: (_) =>
-                                  controller.toggleGenre(genre),
-                            );
-                          }).toList(),
+                          children: ["Action", "Sci-Fi", "Drama", "Comedy"].map(
+                            (genre) {
+                              final isSelected = account.selectedGenres
+                                  .contains(genre);
+                              return ChoiceChip(
+                                label: UiHelper.customText(
+                                  text: genre,
+                                  fontsize: SizeConfig.fs(14),
+                                  color: isSelected
+                                      ? Colors.white
+                                      : Colors.grey[400],
+                                ),
+                                selected: isSelected,
+                                selectedColor: Colors.blue,
+                                backgroundColor: Colors.grey[800],
+                                onSelected: (_) =>
+                                    controller.toggleGenre(genre),
+                              );
+                            },
+                          ).toList(),
                         ),
                       ],
                     ),
@@ -184,8 +195,7 @@ class AccountTab extends StatelessWidget {
                         Switch(
                           value: account.isSubscribed,
                           activeColor: Colors.blue,
-                          onChanged: (_) =>
-                              controller.toggleSubscription(),
+                          onChanged: (_) => controller.toggleSubscription(),
                         ),
                       ],
                     ),

@@ -6,7 +6,7 @@ import 'package:movie_streaming_app/shared_widgets/movie_play_main_button.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/asset_path.dart';
 import '../../../../core/utils/size_config.dart';
-import '../../../../shared_widgets/premium_plan_bottom_sheet.dart';
+import '../../../plan_card/presentation/pages/premium_plan_bottom_sheet.dart';
 import '../../../video/presentation/pages/video_player.dart';
 import '../widget/movie_description_sheet.dart';
 
