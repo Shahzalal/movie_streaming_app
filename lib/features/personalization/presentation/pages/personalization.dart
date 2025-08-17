@@ -69,7 +69,9 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
         centerTitle: true,
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeBottomNavScreen()));
+            },
             child: UiHelper.customText(
               text: "Skip",
               fontsize: SizeConfig.ws(14),

@@ -3,11 +3,11 @@ import 'features/splash/presentation/pages/splash_page.dart';
 import 'package:get/get.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MovieStreamingApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MovieStreamingApp extends StatelessWidget {
+  const MovieStreamingApp({super.key});
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
