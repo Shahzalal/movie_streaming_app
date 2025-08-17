@@ -122,7 +122,7 @@ class PremiumPlanBottomSheet extends StatelessWidget {
                     ),
                     onPressed: () {
                       // Action
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomVideoPlayer()));
+
                     },
                     child: UiHelper.customText(
                       text: "Start your 14-days trial",
@@ -232,3 +232,5 @@ class PremiumPlanBottomSheet extends StatelessWidget {
     );
   }
 }
+
+

@@ -4,8 +4,11 @@ import 'package:movie_streaming_app/core/theme/app_colors.dart';
 import 'package:movie_streaming_app/core/utils/asset_path.dart';
 import 'package:movie_streaming_app/core/utils/size_config.dart';
 import 'package:movie_streaming_app/core/utils/ui_helper.dart';
+import 'package:movie_streaming_app/features/accounts/presentation/pages/accounts_tab.dart';
 import 'package:movie_streaming_app/features/home/presentation/pages/home_page.dart';
 import '../../../getx/controller/bottom_navigation_controller.dart';
+import '../../../search/presentation/pages/movie_search_page.dart';
+import '../../../watch_list/presentation/pages/watch_list.dart';
 
 
 class HomeBottomNavScreen extends StatefulWidget {
@@ -20,9 +23,9 @@ class _HomeBottomNavScreenState extends State<HomeBottomNavScreen> {
 
   final List<Widget> screens = [
     HomePage(),
-    HomePage(),
-    HomePage(),
-    HomePage(),
+    WatchList(),
+    MovieSearchPage(),
+    AccountTab(),
   ];
 
   @override
